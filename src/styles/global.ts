@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components'
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
     
@@ -42,4 +42,39 @@ export const GlobalStyle = createGlobalStyle`
         opacity: 0.6;
         cursor: not-allowed;
     }
-`
+
+    .overlay-modal {
+        background: rgba(0, 0, 0, 0.3);
+
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .content-modal {
+        width: 100%;
+        max-width: 565px;
+        background: var(--background);
+        padding: 3rem;
+        position: relative;
+        border-radius: 0.25rem;
+    }
+
+    .close-btn {
+        position: absolute;
+        right: 1.5rem;
+        top: 1.5rem;
+        border: 0;
+
+        transition: 0.2s;
+        &:hover {
+            transform: scale(1.1)
+        }
+    }
+`;

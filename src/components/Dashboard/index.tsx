@@ -1,13 +1,13 @@
-import React from 'react'
-import { Summary } from '../Summary'
-import * as S from './styles'
+import React from "react";
+import { Summary } from "../Summary";
+import { TransacionTable } from "../TransactionsTable";
+import * as S from "./styles";
 
 export const Dashboard = () => {
-
-return (
+  return (
     <S.Container>
-        <Summary />
+      <Summary />
+      <TransacionTable />
     </S.Container>
-)
-
-}
+  );
+};
