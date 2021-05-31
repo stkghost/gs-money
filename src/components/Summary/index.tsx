@@ -8,8 +8,13 @@ import * as S from './styles'
 
 export const Summary: React.FC = () => {
 
-    const data = useContext(TransactionContext);
-    console.log(data)
+    const {transactions} = useContext(TransactionContext);
+
+    const totalAmount = transactions.reduce((acc, transaction) =>{
+        if (transaction.type === 'deposit') {
+            return acc + transaction.amount;
+        }
+    })
 
     return (
         <S.Container>

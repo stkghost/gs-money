@@ -20,16 +20,21 @@ export const NewModal = ({isOpen, onRequestClose}: NewModalProps) => {
   const [amount, setAmount] = useState(0);
   const [category, setCategory] = useState('')
 
-  const handleNewTransaction = (e: FormEvent) => {
+  async function handleNewTransaction(e: FormEvent) {
     e.preventDefault()
 
-    createTransaction({
+    await createTransaction({
       title,
       amount,
       type,
       category
     })
-    
+
+    onRequestClose();
+    setTitle('')
+    setAmount(0)
+    setCategory('')
+    setType('')
   }
   
   return (
