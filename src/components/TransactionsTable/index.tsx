@@ -1,31 +1,11 @@
-import { useEffect, useState } from "react";
-import { http } from "../../services/api";
+import { useContext } from 'react';
+import { TransactionContext } from "../../TransactionsContext";
 import * as S from "./styles";
-
-interface Transaction {
-  id: number;
-  title: string;
-  amount: number;
-  type: string;
-  category: string;
-  createdAt: string;
-  isDeposit: boolean;
-}
 
 export const TransacionTable: React.FC = () => {
 
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-  
-  useEffect(() => {
-    http.get("transections").then((response) => {
-      setTransactions(response.data.transactions);
-    });
-  }, []);
+  const {transactions} = useContext(TransactionContext)
 
-  console.log("ITENS", transactions)
-   
-  const data: Transaction[] = transactions
-  
   return (
     <S.Container>
       <table>
@@ -39,7 +19,7 @@ export const TransacionTable: React.FC = () => {
         </thead>
         <tbody>
           
-          {data.map((item) => (
+          {transactions.map((item) => (
               <tr key={item.id}>
                 <td>{item.title}</td>
                 <td className={item.type}>
