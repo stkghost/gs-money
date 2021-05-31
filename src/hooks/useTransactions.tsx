@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
-import { createContext, ReactNode, useEffect, useState } from "react";
-import { http } from "./services/api";
+import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { http } from "../services/api";
 
 //Foi criado a interface Transaction para typar o resultado
 interface Transaction {
@@ -27,7 +27,7 @@ interface TransactionContextData {
 //Cria um type passando tudo que vem de Transaction menos o id, createdAt e isDeposit. TransactionInput é usado como o tipo da transaction na função createTransaction
 type TransactionInput = Omit<Transaction, 'id' | 'createdAt' | 'isDeposit'>
 
-export const TransactionContext = createContext<TransactionContextData>(
+const TransactionContext = createContext<TransactionContextData>(
   {} as TransactionContextData
 );
 
@@ -60,4 +60,10 @@ export const TransactionsProvider = ({children}: TransactionsProviderProps) => {
       {children}
     </TransactionContext.Provider>
   )
+}
+
+export function useTransactions() {
+  const context = useContext(TransactionContext)
+
+  return context
 }
